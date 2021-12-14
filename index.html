@@ -1,0 +1,48 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Theorist's Sketchpad</title>
+</head>
+
+<body>
+    <div id="cy"></div>
+</body>
+
+<script src='cytoscape.js'></script>
+
+</html> -->
+<!doctype html>
+
+<html>
+
+<head>
+    <title>Graph Theorist's Sketchpad</title>
+    <script src="cytoscape.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div id="cy"></div>
+    <div id="qtip"></div>
+
+    <div id="info">
+        <p id="instructions"><strong>Controls</strong><br>
+            <strong>Create Vertex: </strong>Left-Click Empty Canvas<br>
+            <strong>Delete Vertex/Edge: </strong>Right-Click Vertex/Edge<br>
+            <Strong>Create Edge: </Strong>Left-Click VertexA --> VertexB<br>
+        </p>
+        <p id="currentVertex">Selected Vertex: None | Degrees: None</p>
+        <p id="numberVertices">Number of Vertices: 0</p>
+        <p id="numberEdges">Number of Edges: 0</p>
+    </div>
+</body>
+
+<script src="cytoscape.js"></script>
+<script src="cytoscape-qtip.js"></script>
+<script src="app.js"></script>
+
+</html>
