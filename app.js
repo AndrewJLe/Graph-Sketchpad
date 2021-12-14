@@ -24,7 +24,7 @@ var cy = cytoscape({
             style: {
                 'width': 2,
                 'line-color': '#000000',
-                'target-arrow-color': '#ccc',
+                'target-arrow-color': '#000000',
                 'curve-style': 'bezier'
             }
         }
@@ -32,16 +32,9 @@ var cy = cytoscape({
 
 });
 
-
-document.addEventListener('keydown', test);
-function test(e) {
-    if (e.ctrlKey) {
-        console.log(cy.nodes().size());
-    }
-}
-
 // Settings
 var enableNodeCreation = true;
+var toggleDirectedModeFlag = true;
 
 // Vertices Info
 var vertexID = 0;
@@ -54,6 +47,25 @@ var edgeTarget;
 /********** INITIALIZE END ***********/
 
 /********** EVENTS START ***********/
+document.addEventListener('keydown', toggleDirectedMode);
+function toggleDirectedMode(e) {
+    if (e.ctrlKey) {
+        if (toggleDirectedModeFlag) {
+            console.log('directed mode enabled')
+            cy.style().selector('edge').style({
+                'target-arrow-shape': 'triangle',
+            }).update();
+        }
+        else {
+            console.log('undirected mode disabled')
+            cy.style().selector('edge').style({
+                'target-arrow-shape': 'none',
+            }).update();
+        }
+        toggleDirectedModeFlag = !toggleDirectedModeFlag;
+    }
+}
+
 // Add Node on click
 cy.on('click', function (e) {
     if (enableNodeCreation) {
