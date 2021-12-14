@@ -47,6 +47,8 @@ var edgeTarget;
 /********** INITIALIZE END ***********/
 
 /********** EVENTS START ***********/
+
+// Directed Edges Toggle
 document.addEventListener('keydown', toggleDirectedMode);
 function toggleDirectedMode(e) {
     if (e.ctrlKey) {
@@ -79,7 +81,6 @@ cy.on('click', function (e) {
         });
         selectedVertex = vertex;
         vertexID += 1; // update vertexID
-        deleteNode();
         clearEdgeSourceTarget()
         updateVerticesInfo();
         updateCurrentVertex(vertex);
@@ -110,9 +111,9 @@ cy.on('click', 'node', function (e) {
             },
         });
         edgeID += 1;
-        deleteEdge();
         updateCurrentVertex(this);
     }
+    updateEdgesInfo();
     clearEdgeSourceTarget()
 });
 
@@ -122,25 +123,17 @@ function clearEdgeSourceTarget() {
     edgeTarget = null;
 }
 
-// For new nodes: Delete Node on right-click
-function deleteNode() {
-    cy.on('cxttap', "node", function (e) {
-        cy.remove(this);
-    });
-    updateVerticesInfo();
-}
-
-// For new edges: Delete Edge on right-click
-function deleteEdge() {
-    cy.on('cxttap', "edge", function (e) {
-        cy.remove(this);
-    });
-    updateEdgesInfo();
-}
-
 // Delete Edge on right-click
 cy.on('cxttap', "edge", function (e) {
     cy.remove(this);
+    updateEdgesInfo();
+});
+
+// Delete Node on right-click
+cy.on('cxttap', "node", function (e) {
+    cy.remove(this);
+    updateEdgesInfo();
+    updateVerticesInfo();
 });
 
 /********** EVENTS END ***********/
@@ -149,22 +142,22 @@ cy.on('cxttap', "edge", function (e) {
 // Disable node creation while hovering node
 cy.on('mouseover', 'node', function (event) {
     enableNodeCreation = false;
-    console.log('hovering ' + this.id());
+    // console.log('hovering ' + this.id());
 });
 
 // Enable node creation while not hovering node
 cy.on('mouseout', 'node', function (evt) {
-    console.log('now unhovering ' + this.id());
+    // console.log('now unhovering ' + this.id());
     enableNodeCreation = true;
 });
 
 // Print Edge ID on Hover
 cy.on('mouseover', 'edge', function (evt) {
-    console.log('hovering ' + this.id());
+    // console.log('hovering ' + this.id());
 });
 
 cy.on('mouseout', 'edge', function (evt) {
-    console.log('now unhovering ' + this.id());
+    // console.log('now unhovering ' + this.id());
 });
 /********** QUALITY OF LIFE END ***********/
 
