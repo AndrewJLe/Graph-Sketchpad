@@ -1,6 +1,8 @@
 # Graph-Sketchpad
 Draw vertices and edges
 
+**Live Preview**: https://andrewjle.github.io/Graph-Sketchpad/
+
 **Controls**\
 **Create Vertex**: Left-Click on the canvas\
 **Delete Vertex/Edge**: Right-Click on a vertex or edge\
